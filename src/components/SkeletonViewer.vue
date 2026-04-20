@@ -297,6 +297,7 @@ const svgEl = ref<SVGSVGElement | null>(null)
 const isAnimationPaused = ref(false)
 
 const GLOW_CYCLE_MS = 1600
+// Ángulo en grados que abre los pulgares hacia afuera para reforzar la pose abierta.
 const THUMB_ROTATION_ANGLE = 26
 
 type AnimeReturn = ReturnType<typeof animate>
@@ -376,36 +377,33 @@ function toggleAnimation() {
 
   isAnimationPaused.value = !isAnimationPaused.value
 
-  if (isAnimationPaused.value) {
-    stopAll()
-    resetBones()
-    return
-  }
-
-  startAnimation(props.parte)
+  syncAnimationState(props.parte)
 }
 
 function thumbRotate(angle: number, x: number, y: number) {
   return `rotate(${angle} ${x} ${y})`
 }
 
+function syncAnimationState(parte: string | null) {
+  if (parte && !isAnimationPaused.value) {
+    startAnimation(parte)
+    return
+  }
+
+  stopAll()
+  resetBones()
+}
+
 watch(
   () => props.parte,
   (val) => {
-    if (val && !isAnimationPaused.value) {
-      startAnimation(val)
-    } else {
-      stopAll()
-      resetBones()
-    }
+    syncAnimationState(val)
   },
   { flush: 'post' },
 )
 
 onMounted(() => {
-  if (props.parte && !isAnimationPaused.value) {
-    startAnimation(props.parte)
-  }
+  syncAnimationState(props.parte)
 })
 
 onBeforeUnmount(() => stopAll())
