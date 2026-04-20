@@ -364,6 +364,9 @@ const props = defineProps<{ parte: string | null }>()
 
 const svgEl = ref<SVGSVGElement | null>(null)
 
+/** Duración en ms de un ciclo completo del pulso de brillo */
+const GLOW_CYCLE_MS = 1600
+
 type AnimeReturn = ReturnType<typeof animate>
 let rotAnim: AnimeReturn | null = null
 let glowFrame = 0
@@ -405,7 +408,7 @@ function startAnimation(parte: string) {
   const start = performance.now()
 
   function pulse(now: number) {
-    const t = ((now - start) % 1600) / 1600
+    const t = ((now - start) % GLOW_CYCLE_MS) / GLOW_CYCLE_MS
     // Curva suave: 0 → 1 → 0
     const intensity = 0.5 - 0.5 * Math.cos(t * 2 * Math.PI)
 
