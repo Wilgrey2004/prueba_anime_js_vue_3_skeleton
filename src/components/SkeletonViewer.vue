@@ -331,6 +331,7 @@ function startAnimation(parte: string) {
 
   const target = svgEl.value.querySelector<SVGGElement>(`[data-parte="${parte}"]`)
   if (!target) return
+  const activeTarget = target
 
   rotAnim = animate(svgEl.value, {
     rotateY: [0, 360],
@@ -355,10 +356,10 @@ function startAnimation(parte: string) {
     const fillColor = `rgb(${r},${g},${b})`
     const strokeColor = `rgb(${Math.round(186 + 69 * intensity)},${Math.round(230 + 25 * intensity)},255)`
 
-    target.style.fill = fillColor
-    target.style.stroke = strokeColor
-    target.style.strokeWidth = `${0.8 + 0.7 * intensity}`
-    target.style.filter =
+    activeTarget.style.fill = fillColor
+    activeTarget.style.stroke = strokeColor
+    activeTarget.style.strokeWidth = `${0.8 + 0.7 * intensity}`
+    activeTarget.style.filter =
       `drop-shadow(0 0 ${blur1}px ${fillColor}) ` +
       `drop-shadow(0 0 ${blur2}px #7dd3fc) ` +
       `drop-shadow(0 0 ${blur3}px rgba(56,189,248,0.35))`
