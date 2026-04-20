@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-[radial-gradient(circle_at_top,#0f172a_0%,#020617_45%,#020617_100%)] text-slate-100">
     <div class="mx-auto flex min-h-screen max-w-7xl flex-col gap-6 px-4 py-4 lg:flex-row lg:px-8 lg:py-8">
-      <aside class="w-full lg:w-84 rounded-[2rem] border border-white/10 bg-slate-900/80 backdrop-blur-xl shadow-2xl shadow-cyan-950/20 overflow-hidden">
+      <aside class="w-full lg:w-80 rounded-[2rem] border border-white/10 bg-slate-900/80 backdrop-blur-xl shadow-2xl shadow-cyan-950/20 overflow-hidden">
         <div class="border-b border-white/10 px-6 py-6">
           <span class="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-sky-200">
             🩻 Panel clínico

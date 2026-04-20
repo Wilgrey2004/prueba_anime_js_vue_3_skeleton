@@ -203,8 +203,8 @@
           <rect x="12" y="308" width="5" height="20" rx="2"/>
           <rect x="18" y="308" width="5" height="19" rx="2"/>
           <rect x="24" y="308" width="5" height="16" rx="2"/>
-          <rect x="2" y="296" width="6" height="14" rx="2" transform="rotate(-26 2 296)"/>
-          <rect x="0" y="311" width="6" height="11" rx="2" transform="rotate(-26 0 311)"/>
+          <rect x="2" y="296" width="6" height="14" rx="2" :transform="thumbRotate(-THUMB_ROTATION_ANGLE, 2, 296)"/>
+          <rect x="0" y="311" width="6" height="11" rx="2" :transform="thumbRotate(-THUMB_ROTATION_ANGLE, 0, 311)"/>
           <rect x="6" y="328" width="5" height="12" rx="2"/>
           <rect x="12" y="328" width="5" height="13" rx="2"/>
           <rect x="18" y="328" width="5" height="12" rx="2"/>
@@ -219,8 +219,8 @@
           <rect x="218" y="308" width="5" height="19" rx="2"/>
           <rect x="224" y="308" width="5" height="20" rx="2"/>
           <rect x="230" y="308" width="5" height="18" rx="2"/>
-          <rect x="232" y="296" width="6" height="14" rx="2" transform="rotate(26 232 296)"/>
-          <rect x="234" y="311" width="6" height="11" rx="2" transform="rotate(26 234 311)"/>
+          <rect x="232" y="296" width="6" height="14" rx="2" :transform="thumbRotate(THUMB_ROTATION_ANGLE, 232, 296)"/>
+          <rect x="234" y="311" width="6" height="11" rx="2" :transform="thumbRotate(THUMB_ROTATION_ANGLE, 234, 311)"/>
           <rect x="212" y="328" width="5" height="10" rx="2"/>
           <rect x="218" y="328" width="5" height="12" rx="2"/>
           <rect x="224" y="328" width="5" height="13" rx="2"/>
@@ -297,6 +297,7 @@ const svgEl = ref<SVGSVGElement | null>(null)
 const isAnimationPaused = ref(false)
 
 const GLOW_CYCLE_MS = 1600
+const THUMB_ROTATION_ANGLE = 26
 
 type AnimeReturn = ReturnType<typeof animate>
 let rotAnim: AnimeReturn | null = null
@@ -382,6 +383,10 @@ function toggleAnimation() {
   }
 
   startAnimation(props.parte)
+}
+
+function thumbRotate(angle: number, x: number, y: number) {
+  return `rotate(${angle} ${x} ${y})`
 }
 
 watch(
